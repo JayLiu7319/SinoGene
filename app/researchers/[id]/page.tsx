@@ -6,10 +6,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Breadcrumb } from "@/components/breadcrumb"
-import LineChart from "@/components/charts/line-chart"
-import PieChart from "@/components/charts/pie-chart"
-import BarChart from "@/components/charts/bar-chart"
-import NetworkGraph from "@/components/charts/network-graph"
+import ResearcherMetricsCharts from "@/components/charts/researcher-metrics-charts"
+// 在导入部分
+import NetworkGraphWrapper from "@/components/charts/network-graph-wrapper"
 
 // 模拟数据 - 引用趋势
 const citationData = [
@@ -375,11 +374,12 @@ export default function ResearcherDetailPage({ params }: { params: { id: string 
                   </div>
                 </div>
               </TabsContent>
+              {/* 在网络标签页内容中 */}
               <TabsContent value="network" className="pt-4">
                 <div className="text-center p-4">
                   <h3 className="font-semibold mb-4">学术合作网络</h3>
                   <div className="h-[500px] w-full border rounded-lg overflow-hidden">
-                    <NetworkGraph data={networkData} height={500} />
+                    <NetworkGraphWrapper data={networkData} height={500} />
                   </div>
                   <p className="text-sm text-muted-foreground mt-4">
                     学术合作网络图显示了张伟教授与其他研究者的合作关系。节点大小表示合作强度，连线粗细表示合作频率。
@@ -387,120 +387,12 @@ export default function ResearcherDetailPage({ params }: { params: { id: string 
                 </div>
               </TabsContent>
               <TabsContent value="metrics" className="pt-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="border rounded-lg p-4">
-                    <h3 className="font-semibold mb-4">引用趋势</h3>
-                    <LineChart
-                      data={citationData}
-                      xField="year"
-                      yField="value"
-                      height={300}
-                      config={{
-                        point: {
-                          size: 5,
-                          shape: "circle",
-                        },
-                        tooltip: {
-                          formatter: (datum) => {
-                            return { name: "引用次数", value: datum.value }
-                          },
-                        },
-                        xAxis: {
-                          title: {
-                            text: "年份",
-                          },
-                        },
-                        yAxis: {
-                          title: {
-                            text: "引用次数",
-                          },
-                        },
-                        smooth: true,
-                      }}
-                    />
-                  </div>
-                  <div className="border rounded-lg p-4">
-                    <h3 className="font-semibold mb-4">论文发表趋势</h3>
-                    <BarChart
-                      data={publicationData}
-                      xField="year"
-                      yField="value"
-                      height={300}
-                      config={{
-                        tooltip: {
-                          formatter: (datum) => {
-                            return { name: "论文数量", value: datum.value }
-                          },
-                        },
-                        xAxis: {
-                          title: {
-                            text: "年份",
-                          },
-                        },
-                        yAxis: {
-                          title: {
-                            text: "论文数量",
-                          },
-                        },
-                        columnStyle: {
-                          fill: "#1890ff",
-                        },
-                      }}
-                    />
-                  </div>
-                  <div className="border rounded-lg p-4">
-                    <h3 className="font-semibold mb-4">期刊分布</h3>
-                    <PieChart
-                      data={journalData}
-                      angleField="value"
-                      colorField="type"
-                      height={300}
-                      config={{
-                        radius: 0.8,
-                        innerRadius: 0.5,
-                        label: {
-                          type: "outer",
-                        },
-                        tooltip: {
-                          formatter: (datum) => {
-                            return { name: datum.type, value: `${datum.value} 篇` }
-                          },
-                        },
-                        interactions: [{ type: "element-active" }],
-                      }}
-                    />
-                  </div>
-                  <div className="border rounded-lg p-4">
-                    <h3 className="font-semibold mb-4">合作者分布</h3>
-                    <BarChart
-                      data={collaboratorData}
-                      xField="count"
-                      yField="institution"
-                      isHorizontal={true}
-                      height={300}
-                      config={{
-                        tooltip: {
-                          formatter: (datum) => {
-                            return { name: datum.institution, value: `${datum.count} 人` }
-                          },
-                        },
-                        xAxis: {
-                          title: {
-                            text: "合作者数量",
-                          },
-                        },
-                        yAxis: {
-                          title: {
-                            text: "机构",
-                          },
-                        },
-                        barStyle: {
-                          fill: "#52c41a",
-                        },
-                      }}
-                    />
-                  </div>
-                </div>
+                <ResearcherMetricsCharts
+                  citationData={citationData}
+                  publicationData={publicationData}
+                  journalData={journalData}
+                  collaboratorData={collaboratorData}
+                />
               </TabsContent>
             </Tabs>
           </div>
