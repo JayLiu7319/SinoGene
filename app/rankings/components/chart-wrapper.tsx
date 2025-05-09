@@ -1,12 +1,23 @@
 "use client"
 
 import dynamic from "next/dynamic"
-import { useState, useEffect } from "react"
+import { Skeleton } from "@/components/ui/skeleton"
 
-// 动态导入图表组件，禁用SSR
-const LineChart = dynamic(() => import("@/components/charts/line-chart"), { ssr: false })
-const BarChart = dynamic(() => import("@/components/charts/bar-chart"), { ssr: false })
-const PieChart = dynamic(() => import("@/components/charts/pie-chart"), { ssr: false })
+// 动态导入图表组件，避免SSR问题
+const LineChart = dynamic(() => import("@/components/charts/line-chart"), {
+  ssr: false,
+  loading: () => <Skeleton className="w-full h-full" />,
+})
+
+const BarChart = dynamic(() => import("@/components/charts/bar-chart"), {
+  ssr: false,
+  loading: () => <Skeleton className="w-full h-full" />,
+})
+
+const PieChart = dynamic(() => import("@/components/charts/pie-chart"), {
+  ssr: false,
+  loading: () => <Skeleton className="w-full h-full" />,
+})
 
 interface ChartWrapperProps {
   type: "line" | "bar" | "pie"
@@ -15,7 +26,7 @@ interface ChartWrapperProps {
   yField?: string | string[]
   angleField?: string
   colorField?: string
-  isHorizontal?: boolean
+  seriesField?: string
   height?: number
   width?: number
   className?: string
@@ -29,27 +40,14 @@ export function ChartWrapper({
   yField,
   angleField,
   colorField,
-  isHorizontal = false,
+  seriesField,
   height = 300,
   width,
   className = "",
   config = {},
 }: ChartWrapperProps) {
-  const [isMounted, setIsMounted] = useState(false)
-
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-  if (!isMounted) {
-    return (
-      <div
-        className={`flex items-center justify-center bg-muted/20 ${className}`}
-        style={{ height, width: width || "100%" }}
-      >
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-      </div>
-    )
+  if (!data || data.length === 0) {
+    return <Skeleton className={`w-full h-[${height}px] ${className}`} />
   }
 
   switch (type) {
@@ -57,8 +55,9 @@ export function ChartWrapper({
       return (
         <LineChart
           data={data}
-          xField={xField!}
-          yField={yField!}
+          xField={xField}
+          yField={yField}
+          seriesField={seriesField}
           height={height}
           width={width}
           className={className}
@@ -69,9 +68,9 @@ export function ChartWrapper({
       return (
         <BarChart
           data={data}
-          xField={xField!}
-          yField={yField!}
-          isHorizontal={isHorizontal}
+          xField={xField}
+          yField={yField}
+          seriesField={seriesField}
           height={height}
           width={width}
           className={className}
@@ -82,8 +81,8 @@ export function ChartWrapper({
       return (
         <PieChart
           data={data}
-          angleField={angleField!}
-          colorField={colorField!}
+          angleField={angleField}
+          colorField={colorField}
           height={height}
           width={width}
           className={className}
@@ -91,6 +90,6 @@ export function ChartWrapper({
         />
       )
     default:
-      return null
+      return <Skeleton className={`w-full h-[${height}px] ${className}`} />
   }
 }
