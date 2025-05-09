@@ -144,7 +144,7 @@ export default function PapersPage() {
         {/* 筛选侧边栏 */}
         <div className="space-y-6">
           <div>
-            <h3 className="font-medium mb-3">发表年份</h3>
+            <h4 className="font-medium mb-3">发表年份</h4>
             <div className="space-y-2">
               <Select defaultValue="all">
                 <SelectTrigger>
@@ -163,7 +163,7 @@ export default function PapersPage() {
           </div>
 
           <div>
-            <h3 className="font-medium mb-3">期刊</h3>
+            <h4 className="font-medium mb-3">期刊</h4>
             <div className="space-y-2">
               <Select defaultValue="all">
                 <SelectTrigger>
@@ -182,7 +182,7 @@ export default function PapersPage() {
           </div>
 
           <div>
-            <h3 className="font-medium mb-3">研究方向</h3>
+            <h4 className="font-medium mb-3">研究方向</h4>
             <div className="space-y-2">
               <Select defaultValue="all">
                 <SelectTrigger>
@@ -201,7 +201,7 @@ export default function PapersPage() {
           </div>
 
           <div>
-            <h3 className="font-medium mb-3">排序方式</h3>
+            <h4 className="font-medium mb-3">排序方式</h4>
             <div className="space-y-2">
               <Select defaultValue="date_desc">
                 <SelectTrigger>

@@ -16,7 +16,7 @@ export function FilterSidebar({ filters }: FilterSidebarProps) {
     <div className="md:w-64 space-y-4">
       {filters.map((filter) => (
         <div key={filter.value}>
-          <h3 className="font-medium mb-2">{filter.label}</h3>
+          <h4 className="font-medium mb-2">{filter.label}</h4>
           <Select defaultValue={filter.options[0].value}>
             <SelectTrigger>
               <SelectValue placeholder={`选择${filter.label}`} />

@@ -148,7 +148,7 @@ export default function DirectionsPage() {
         {/* 筛选侧边栏 */}
         <div className="space-y-6">
           <div>
-            <h3 className="font-medium mb-3">父级方向</h3>
+            <h4 className="font-medium mb-3">父级方向</h4>
             <div className="space-y-2">
               <Select defaultValue="all">
                 <SelectTrigger>
@@ -168,7 +168,7 @@ export default function DirectionsPage() {
           </div>
 
           <div>
-            <h3 className="font-medium mb-3">热度</h3>
+            <h4 className="font-medium mb-3">热度</h4>
             <div className="space-y-2">
               <Select defaultValue="all">
                 <SelectTrigger>
@@ -187,7 +187,7 @@ export default function DirectionsPage() {
           </div>
 
           <div>
-            <h3 className="font-medium mb-3">趋势</h3>
+            <h4 className="font-medium mb-3">趋势</h4>
             <div className="space-y-2">
               <Select defaultValue="all">
                 <SelectTrigger>
@@ -204,7 +204,7 @@ export default function DirectionsPage() {
           </div>
 
           <div>
-            <h3 className="font-medium mb-3">排序方式</h3>
+            <h4 className="font-medium mb-3">排序方式</h4>
             <div className="space-y-2">
               <Select defaultValue="hotness_desc">
                 <SelectTrigger>

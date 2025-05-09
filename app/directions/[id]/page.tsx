@@ -409,7 +409,7 @@ export default function DirectionDetailPage({ params }: { params: { id: string }
                     <div>
                       <h4 className="font-medium mb-1">细胞-细胞相互作用分析</h4>
                       <p className="text-sm text-muted-foreground">
-                        基于配体-受体表达和空间邻近关系，预测细胞间通讯网络和信号传导路径。
+                        基于配体-受体表达和空间邻近关系，预测细胞间通讯网络和信号传导路���。
                       </p>
                     </div>
                     <div>

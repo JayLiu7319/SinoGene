@@ -120,7 +120,7 @@ export default function ResearchersPage() {
         {/* 筛选侧边栏 */}
         <div className="space-y-6">
           <div>
-            <h3 className="font-medium mb-3">机构</h3>
+            <h4 className="font-medium mb-3">机构</h4>
             <div className="space-y-2">
               <Select defaultValue="all">
                 <SelectTrigger>
@@ -140,7 +140,7 @@ export default function ResearchersPage() {
           </div>
 
           <div>
-            <h3 className="font-medium mb-3">职称</h3>
+            <h4 className="font-medium mb-3">职称</h4>
             <div className="space-y-2">
               <Select defaultValue="all">
                 <SelectTrigger>
@@ -159,7 +159,7 @@ export default function ResearchersPage() {
           </div>
 
           <div>
-            <h3 className="font-medium mb-3">研究方向</h3>
+            <h4 className="font-medium mb-3">研究方向</h4>
             <div className="space-y-2">
               <Select defaultValue="all">
                 <SelectTrigger>
@@ -180,7 +180,7 @@ export default function ResearchersPage() {
           </div>
 
           <div>
-            <h3 className="font-medium mb-3">排序方式</h3>
+            <h4 className="font-medium mb-3">排序方式</h4>
             <div className="space-y-2">
               <Select defaultValue="h_index_desc">
                 <SelectTrigger>

@@ -132,7 +132,7 @@ export default function TeamsPage() {
         {/* 筛选侧边栏 */}
         <div className="space-y-6">
           <div>
-            <h3 className="font-medium mb-3">机构</h3>
+            <h4 className="font-medium mb-3">机构</h4>
             <div className="space-y-2">
               <Select defaultValue="all">
                 <SelectTrigger>
@@ -152,7 +152,7 @@ export default function TeamsPage() {
           </div>
 
           <div>
-            <h3 className="font-medium mb-3">研究方向</h3>
+            <h4 className="font-medium mb-3">研究方向</h4>
             <div className="space-y-2">
               <Select defaultValue="all">
                 <SelectTrigger>
@@ -174,7 +174,7 @@ export default function TeamsPage() {
           </div>
 
           <div>
-            <h3 className="font-medium mb-3">团队规模</h3>
+            <h4 className="font-medium mb-3">团队规模</h4>
             <div className="space-y-2">
               <Select defaultValue="all">
                 <SelectTrigger>
@@ -192,7 +192,7 @@ export default function TeamsPage() {
           </div>
 
           <div>
-            <h3 className="font-medium mb-3">排序方式</h3>
+            <h4 className="font-medium mb-3">排序方式</h4>
             <div className="space-y-2">
               <Select defaultValue="citations_desc">
                 <SelectTrigger>
