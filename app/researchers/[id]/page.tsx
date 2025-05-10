@@ -173,7 +173,7 @@ export default function ResearcherDetailPage({ params }: { params: { id: string 
           <div className="flex flex-wrap gap-2">
             <Badge variant="secondary">基因组学</Badge>
             <Badge variant="secondary">表观遗传学</Badge>
-            <Badge variant="secondary">生物信息学</Badge>
+            <Badge variant="secondary">生物信��学</Badge>
           </div>
         </div>
       </div>

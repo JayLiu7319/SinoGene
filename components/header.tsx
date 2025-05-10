@@ -7,7 +7,7 @@ import { Bell, Menu, Search, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -31,7 +31,7 @@ const mainNavItems = [
 export default function Header() {
   const [isSearchExpanded, setIsSearchExpanded] = useState(false)
   const pathname = usePathname()
-  const isLoggedIn = false // 假设用户未登录
+  const [isLoggedIn, setIsLoggedIn] = useState(true) // 模拟用户登录状态
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -131,23 +131,33 @@ export default function Header() {
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="icon" className="rounded-full shrink-0">
                       <Avatar className="h-8 w-8">
-                        <AvatarFallback>用户</AvatarFallback>
+                        <AvatarImage src="/professional-asian-male-scientist.png" alt="用户头像" />
+                        <AvatarFallback>张伟</AvatarFallback>
                       </Avatar>
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
                     <DropdownMenuLabel>我的账户</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem>个人中心</DropdownMenuItem>
-                    <DropdownMenuItem>我的收藏</DropdownMenuItem>
-                    <DropdownMenuItem>我的关注</DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/user">个人中心</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/user/collections">我的收藏</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/user/follows">我的关注</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/user/recently-viewed">最近浏览</Link>
+                    </DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem>退出登录</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setIsLoggedIn(false)}>退出登录</DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
               ) : (
-                <Button size="sm" className="shrink-0">
-                  登录/注册
+                <Button size="sm" className="shrink-0" asChild>
+                  <Link href="/auth/login">登录/注册</Link>
                 </Button>
               )}
             </>
