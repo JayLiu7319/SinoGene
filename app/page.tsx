@@ -1,12 +1,12 @@
-import Link from "next/link"
-import Image from "next/image"
-import { ArrowRight, Search } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import Image from "next/image"
+import { ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { CardPaper } from "@/components/card-paper"
 import { CardResearcher } from "@/components/card-researcher"
 import { CardTeam } from "@/components/card-team"
 import { CardDirection } from "@/components/card-direction"
+import { HomeSearch } from "@/components/search/home-search"
 
 // 模拟数据
 const featuredPapers = [
@@ -157,27 +157,7 @@ export default function Home() {
             <p className="text-xl text-muted-foreground">
               华因智汇为科研工作者提供全面的论文、学者、团队和研究方向分析，助力科研决策与创新。
             </p>
-            <div className="relative mt-4">
-              <Search className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
-              <Input
-                type="search"
-                placeholder="搜索论文、学者、团队或研究方向..."
-                className="pl-10 pr-20 h-12 text-base"
-              />
-              <Button className="absolute right-1 top-1 h-10">搜索</Button>
-            </div>
-            <div className="flex flex-wrap gap-2 text-sm text-muted-foreground mt-2">
-              热门搜索:
-              <Link href="/search?q=单细胞测序" className="hover:text-primary transition-colors">
-                单细胞测序
-              </Link>
-              <Link href="/search?q=CRISPR" className="hover:text-primary transition-colors">
-                CRISPR
-              </Link>
-              <Link href="/search?q=空间转录组" className="hover:text-primary transition-colors">
-                空间转录组
-              </Link>
-            </div>
+            <HomeSearch className="mt-4" />
           </div>
           <div className="hidden md:flex justify-end">
             <Image

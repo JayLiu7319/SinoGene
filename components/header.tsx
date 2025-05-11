@@ -3,9 +3,8 @@
 import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Bell, Menu, Search, X } from "lucide-react"
+import { Bell, Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
@@ -18,6 +17,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { cn } from "@/lib/utils"
 import { Logo } from "@/components/logo"
+import { HeaderSearch } from "@/components/search/header-search"
 
 const mainNavItems = [
   { title: "首页", href: "/" },
@@ -93,31 +93,11 @@ export default function Header() {
         </div>
 
         <div className={cn("ml-auto flex items-center gap-2", isSearchExpanded ? "w-full md:w-1/2" : "")}>
-          {isSearchExpanded ? (
-            <div className="relative w-full">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input
-                type="search"
-                placeholder="搜索论文、学者、团队、方向..."
-                className="w-full pl-9 pr-12"
-                autoFocus
-              />
-              <Button
-                variant="ghost"
-                size="icon"
-                className="absolute right-0 top-0"
-                onClick={() => setIsSearchExpanded(false)}
-              >
-                <X className="h-4 w-4" />
-                <span className="sr-only">关闭搜索</span>
-              </Button>
-            </div>
-          ) : (
-            <Button variant="ghost" size="icon" className="shrink-0" onClick={() => setIsSearchExpanded(true)}>
-              <Search className="h-5 w-5" />
-              <span className="sr-only">搜索</span>
-            </Button>
-          )}
+          <HeaderSearch
+            isExpanded={isSearchExpanded}
+            setIsExpanded={setIsSearchExpanded}
+            className={isSearchExpanded ? "w-full" : ""}
+          />
 
           {!isSearchExpanded && (
             <>
